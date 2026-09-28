@@ -1,0 +1,12 @@
+{
+  "title": "Арсений — Data Engineer",
+  "description": "Интерактивное резюме Data Engineer: опыт, проекты, достижения и немного личного.",
+  "language": "ru",
+  "robots": {
+    "index": true
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
