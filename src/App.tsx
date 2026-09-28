@@ -505,7 +505,11 @@ export default function App() {
               <button className="active" aria-current="page">ТАЙМЛАЙН</button>
               <button onClick={() => openSection('skills')}>СТЕК</button>
             </div>
-            <p>{String(activeStage + 1).padStart(2, '0')} / {String(stages.length).padStart(2, '0')}</p>
+            <div className="header-contacts presentation-contacts" aria-label="Контакты">
+              <span>СВЯЗАТЬСЯ</span>
+              <a href="https://www.linkedin.com/in/arseniy-kolosov-a831a6170/" target="_blank" rel="noreferrer">LINKEDIN</a>
+              <a href="https://t.me/bubuntu" target="_blank" rel="noreferrer">TELEGRAM</a>
+            </div>
           </div>
           <div className="story-kicker relative z-10 flex items-start justify-between font-mono text-[10px] tracking-[.16em] text-black/55"><p>CAREER FILM / 01—{String(stages.length).padStart(2, '0')}</p><p className="hidden md:block">SCROLL TO MOVE THROUGH TIME</p></div>
           <div className={`story-film ${isChanging ? 'changing' : ''} ${isScienceView ? 'science-view' : ''} ${yandexView === 1 ? 'yandex-stack-view' : ''} ${yandexView === 2 ? 'yandex-duty-view' : ''} ${yandexView === 3 ? 'yandex-optimization-view' : ''} ${yandexView === 4 ? 'yandex-animation-view' : ''} ${yandexView === 5 ? 'yandex-python-view' : ''} ${activeStage === 5 ? `regula-film regula-view-${regulaView}` : ''} ${activeStage === 6 ? 'now-project-film' : ''}`}>
@@ -837,7 +841,11 @@ export default function App() {
               <button onClick={() => openSection('story')}>ТАЙМЛАЙН</button>
               <button className="active" aria-current="page">СТЕК</button>
             </div>
-            <p>WORK IN PROGRESS</p>
+            <div className="header-contacts presentation-contacts" aria-label="Контакты">
+              <span>СВЯЗАТЬСЯ</span>
+              <a href="https://www.linkedin.com/in/arseniy-kolosov-a831a6170/" target="_blank" rel="noreferrer">LINKEDIN</a>
+              <a href="https://t.me/bubuntu" target="_blank" rel="noreferrer">TELEGRAM</a>
+            </div>
           </div>
           <div className="grid min-h-[510px] place-items-center text-center">
             <div>
@@ -849,9 +857,12 @@ export default function App() {
         </section>
       )}
 
-      <footer className="grid grid-cols-12 gap-4 px-5 py-6 md:px-10">
-        <p className="col-span-8 font-display text-2xl tracking-[-.04em]">Сделаем данные полезными.</p>
-        <div className="col-span-4 flex justify-end gap-4 font-mono text-[10px] tracking-wider underline underline-offset-4"><a href="#top">GITHUB</a><a href="#top">LINKEDIN</a></div>
+      <footer className="site-footer">
+        <div className="footer-contacts" aria-label="Контакты">
+          <span>СВЯЗАТЬСЯ</span>
+          <a href="https://www.linkedin.com/in/arseniy-kolosov-a831a6170/" target="_blank" rel="noreferrer">LINKEDIN</a>
+          <a href="https://t.me/bubuntu" target="_blank" rel="noreferrer">TELEGRAM</a>
+        </div>
       </footer>
     </main>
   )
