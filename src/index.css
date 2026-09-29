@@ -46,6 +46,14 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .presentation-switcher button { min-width: 104px; border: 1px solid #111; background: #f9f9f6; padding: 0 15px; transition: background .2s ease, color .2s ease, box-shadow .2s ease, transform .2s ease; }
 .presentation-switcher button:not(.active):hover { background: var(--active-color, #dfff4f); transform: translate(-1px, -1px); box-shadow: 3px 3px 0 #111; }
 .presentation-switcher button.active { background: var(--active-color, #dfff4f); color: #111; font-weight: 600; box-shadow: 3px 3px 0 #111; }
+.story-edge-nav { position: absolute; z-index: 18; top: 50%; display: grid; width: 32px; height: 96px; place-items: center; background: rgba(249, 249, 246, .82); color: #111; opacity: .62; transform: translateY(-50%); backdrop-filter: blur(4px); transition: width .2s ease, background .2s ease, opacity .2s ease; }
+.story-edge-nav span { font-family: 'DM Mono', monospace; font-size: 23px; line-height: 1; transition: transform .2s ease; }
+.story-edge-nav-prev { left: 0; border-right: 1px solid #1114; }
+.story-edge-nav-next { right: 0; border-left: 1px solid #1114; }
+.story-edge-nav:hover:not(:disabled), .story-edge-nav:focus-visible:not(:disabled) { width: 38px; background: color-mix(in srgb, var(--active-color, #dfff4f) 72%, #f9f9f6); opacity: 1; outline: none; }
+.story-edge-nav-prev:hover:not(:disabled) span, .story-edge-nav-prev:focus-visible:not(:disabled) span { transform: translateX(-2px); }
+.story-edge-nav-next:hover:not(:disabled) span, .story-edge-nav-next:focus-visible:not(:disabled) span { transform: translateX(2px); }
+.story-edge-nav:disabled { cursor: default; opacity: .14; }
 
 .skill-node {
   position: absolute; display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
@@ -361,6 +369,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .presentation-switcher { justify-self: center; height: 30px; }
   .presentation-switcher button { min-width: 82px; padding: 0 9px; }
   .presentation-contacts { padding-right: 12px; }
+  .story-edge-nav { width: 24px; height: 72px; }
+  .story-edge-nav:hover:not(:disabled), .story-edge-nav:focus-visible:not(:disabled) { width: 28px; }
   .story-kicker { padding-right: 0; }
   .yandex-stack-slide { top: -4px; display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 12px; width: calc(100vw - 40px); min-height: 400px; }
   .story-copy .yandex-stack-heading h2 { margin-bottom: 18px; font-size: 42px; }

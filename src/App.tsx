@@ -247,6 +247,71 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [releaseStory, showOutroView])
 
+  const stepStory = useCallback((direction: -1 | 1) => {
+    if (lockRef.current) return
+
+    const movingForward = direction > 0
+    const current = activeStageRef.current
+    let transitionDelay = 460
+    let didMove = true
+
+    if (current === 0 && movingForward && !isScienceViewRef.current) {
+      showScienceView(true)
+      transitionDelay = 900
+    } else if (current === 0 && !movingForward && isScienceViewRef.current) {
+      showScienceView(false)
+      transitionDelay = 900
+    } else if (current === 0 && !movingForward) {
+      didMove = false
+    } else if (current === 1 && !movingForward) {
+      showScienceView(true)
+      goToStage(0)
+      transitionDelay = 900
+    } else if (current === 4 && movingForward && yandexViewRef.current < 5) {
+      showYandexView(yandexViewRef.current + 1)
+      transitionDelay = 900
+    } else if (current === 4 && !movingForward && yandexViewRef.current > 0) {
+      showYandexView(yandexViewRef.current - 1)
+      transitionDelay = 900
+    } else if (current === 5 && movingForward && regulaViewRef.current < 5) {
+      showRegulaView(regulaViewRef.current + 1)
+      transitionDelay = 900
+    } else if (current === 5 && !movingForward && regulaViewRef.current > 0) {
+      showRegulaView(regulaViewRef.current - 1)
+      transitionDelay = 900
+    } else if (current === 5 && !movingForward) {
+      showYandexView(5)
+      goToStage(4)
+      transitionDelay = 900
+    } else if (current === 6 && movingForward && !isOutroViewRef.current && nowViewRef.current < 1) {
+      showNowView(nowViewRef.current + 1)
+      transitionDelay = 900
+    } else if (current === 6 && !movingForward && !isOutroViewRef.current && nowViewRef.current > 0) {
+      showNowView(nowViewRef.current - 1)
+      transitionDelay = 900
+    } else if (current === 6 && !movingForward && !isOutroViewRef.current) {
+      showRegulaView(5)
+      goToStage(5)
+      transitionDelay = 900
+    } else if (current === stages.length - 1 && movingForward && !isOutroViewRef.current) {
+      showOutroView(true)
+      transitionDelay = 900
+    } else if (current === stages.length - 1 && !movingForward && isOutroViewRef.current) {
+      showOutroView(false)
+      transitionDelay = 900
+    } else if (current === stages.length - 1 && movingForward && isOutroViewRef.current) {
+      didMove = false
+    } else {
+      const next = Math.max(0, Math.min(stages.length - 1, current + direction))
+      if (next === current) didMove = false
+      else goToStage(next)
+    }
+
+    if (!didMove) return
+    lockRef.current = true
+    window.setTimeout(() => { lockRef.current = false }, transitionDelay)
+  }, [goToStage, showNowView, showOutroView, showRegulaView, showScienceView, showYandexView])
+
   useEffect(() => {
     if (activeStage !== 4 || yandexView !== 2) return
     const eyes = dutyEyesRef.current
@@ -511,6 +576,8 @@ export default function App() {
               <a href="https://t.me/bubuntu" target="_blank" rel="noreferrer">TELEGRAM</a>
             </div>
           </div>
+          <button type="button" className="story-edge-nav story-edge-nav-prev" onClick={() => stepStory(-1)} disabled={activeStage === 0 && !isScienceView} aria-label="Предыдущий слайд"><span aria-hidden="true">‹</span></button>
+          <button type="button" className="story-edge-nav story-edge-nav-next" onClick={() => stepStory(1)} disabled={activeStage === stages.length - 1 && isOutroView} aria-label="Следующий слайд"><span aria-hidden="true">›</span></button>
           <div className="story-kicker relative z-10 flex items-start justify-between font-mono text-[10px] tracking-[.16em] text-black/55"><p>CAREER FILM / 01—{String(stages.length).padStart(2, '0')}</p><p className="hidden md:block">SCROLL TO MOVE THROUGH TIME</p></div>
           <div className={`story-film ${isChanging ? 'changing' : ''} ${isScienceView ? 'science-view' : ''} ${yandexView === 1 ? 'yandex-stack-view' : ''} ${yandexView === 2 ? 'yandex-duty-view' : ''} ${yandexView === 3 ? 'yandex-optimization-view' : ''} ${yandexView === 4 ? 'yandex-animation-view' : ''} ${yandexView === 5 ? 'yandex-python-view' : ''} ${activeStage === 5 ? `regula-film regula-view-${regulaView}` : ''} ${activeStage === 6 ? 'now-project-film' : ''}`}>
             <div className={`story-copy ${stage.featureImage ? 'story-copy-feature' : ''} ${activeStage === 3 ? 'story-copy-project' : ''}`}>
