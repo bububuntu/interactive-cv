@@ -22,6 +22,7 @@ import yandexStackGrafana from './imports/yandex-stack-grafana.png'
 import yandexStackAirflow from './imports/yandex-stack-airflow.png'
 import yandexStackBi from './imports/yandex-stack-bi.png'
 import yandexStackPython from './imports/yandex-stack-python.png'
+import yandexStackClickHouse from './imports/yandex-stack-clickhouse.png'
 import hobbiesOutroImage from './imports/hobbies-outro.png'
 
 type Mode = 'story' | 'skills'
@@ -112,6 +113,7 @@ const yandexStack = [
   { name: 'YTSaurus', image: yandexStackAirflow, description: 'YTSaurus - платформа для распределенного хранения и обработки больших данных (с 2023 г. в open-source).\nВ себе YTSaurus во многом совмещает функционал Apache Iceberg и Spark либо же Hadoop с HDFS, YARN, HIVE, и HBase).\nИспользовал на регулярной основе для обработки данных, оптимизации ETL-пайплайнов, ad-hoc аналитики и работы с метаданными.' },
   { name: 'DataLens', image: yandexStackBi, description: 'BI-инструмент с функционалом и визуальным редактором для создания интерактивных дашбордов с возможностью реализовывать кастомные настраиваемые чарты используя JavaScript и интеграцию с HighCharts, чем регулярно пользовался.' },
   { name: 'Python', image: yandexStackPython, description: 'Разработка ETL-пайплайнов, бэкэнда и ad-hoc аналитика на Pandas.' },
+  { name: 'ClickHouse', image: yandexStackClickHouse, description: 'Использовал CHYT (ClickHouse over YTSaurus). Строил витрины для дашбордов.' },
 ]
 
 const stages = [
